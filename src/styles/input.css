@@ -18,4 +18,9 @@ nav.navbar .navitems li:hover > ul {
   display: block;
 }
 
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
 @tailwind utilities;

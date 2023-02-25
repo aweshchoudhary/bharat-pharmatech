@@ -1,7 +1,6 @@
 import Card from "@/components/Card";
 import Head from "next/head";
 import React from "react";
-import Layout from "../Layout";
 
 const category = () => {
   return (
@@ -16,12 +15,28 @@ const category = () => {
         <h2 className="text-5xl mb-10 font-semibold text-center">
           Granulation Machinery
         </h2>
-        <ul className="flex flex-wrap gap-5 justify-center">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        <ul className="flex flex-wrap w-full">
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
+          <div className="w-1/3 mb-5 shrink-0">
+            <Card />
+          </div>
         </ul>
       </section>
     </>

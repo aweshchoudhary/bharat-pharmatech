@@ -1,14 +1,22 @@
-import Navbar from "@/components/Navbar";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
-import Card from "@/components/Card";
 import Link from "next/link";
-import Layout from "./Layout";
-import CardSlider from "@/components/CardSlider";
 import SliderSection from "@/components/SliderSection";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
+import Slider from "react-slick";
+import Image from "next/image";
 
 export default function Home() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+    verticalSwiping: true,
+    autoplay: true,
+    speed: 500,
+  };
   return (
     <>
       <Head>
@@ -17,12 +25,178 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="hero-section w-full h-[500px] bg-black text-white grid place-items-center">
-        <div className="text-center">
-          <h1 className="text-8xl font-bold capitalize">
-            <strong className="font-bold">Bharat Pharmatech</strong>
-          </h1>
-          <p className="text-5xl">A Brand Of Pharma Machinery & Spares</p>
+      <section className="hero-section w-full md:h-[550px] md:flex border-b">
+        <div className="md:w-[50%] bg-black text-white h-full p-5 flex items-center">
+          <div className="py-10">
+            <h1 className="text-5xl font-bold">Bharat Pharmatech</h1>
+            <h2 className="text-xl font-medium">
+              Brand Of Pharma Machinery & Spares
+            </h2>
+            <p className="mt-5">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
+              quaerat delectus commodi expedita modi cum iusto at nisi? Quidem,
+              provident natus possimus assumenda tenetur quo excepturi
+              voluptatum. Cum, officia odit.
+            </p>
+            <div>
+              <button className="px-5 py-2 rounded-full bg-white text-black mt-5 font-medium">
+                Products
+              </button>
+              <button className="px-5 underline underline-offset-4">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="md:w-[50%] h-full md:block hidden">
+          <div className="sliders-asdf h-full">
+            <Slider {...settings}>
+              <div>
+                <h2 className="text-3xl px-5 py-3 font-semibold">
+                  Granulation Machinery
+                </h2>
+                <div className="grid grid-rows-2 gap-3 px-5 grid-cols-2">
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 className="text-3xl px-5 py-3 font-semibold">
+                  Granulation Machinery
+                </h2>
+                <div className="grid grid-rows-2 gap-3 px-5 grid-cols-2">
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 className="text-3xl px-5 py-3 font-semibold">
+                  Granulation Machinery
+                </h2>
+                <div className="grid grid-rows-2 gap-3 px-5 grid-cols-2">
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="w-full m-0 h-[220px]">
+                    <Image
+                      src={"https://source.unsplash.com/random"}
+                      width="500"
+                      height={500}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </Slider>
+          </div>
+          {/* <Slider {...settings}>
+            <div className="w-full h-[200px]">
+              <div className="bg-gray-100 w-full h-full">
+                <p>hellw</p>
+              </div>
+            </div>
+            <div className="w-full h-[200px]">
+              <div className="bg-gray-100 w-full h-full">
+                <p>hellw</p>
+              </div>
+            </div>
+            <div className="w-full h-[200px]">
+              <div className="bg-gray-100 w-full h-full">
+                <p>hellw</p>
+              </div>
+            </div>
+            <div className="w-full h-[200px]">
+              <div className="bg-gray-100 w-full h-full">
+                <p>hellw</p>
+              </div>
+            </div>
+          </Slider> */}
+          {/* <div className="flex flex-wrap h-4/5 px-5">
+            <div className="w-1/2 h-1/2">
+              <div className="bg-gray-100 w-full h-full"></div>
+            </div>
+          </div> */}
         </div>
       </section>
       <section className="about-section md:flex px-5 pt-10">
