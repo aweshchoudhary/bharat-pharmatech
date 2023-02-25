@@ -73,7 +73,7 @@ const Navbar = () => {
               </ul>
             </li>
             <li className="h-full flex items-center hover:border-b-2 border-black">
-              <Link href="/">Testimonials</Link>
+              <Link href="/testimonials">Testimonials</Link>
             </li>
           </ul>
         </nav>
@@ -84,9 +84,12 @@ const Navbar = () => {
           <button className="p-3 bg-black text-white rounded-full uppercase">
             <Icon className="text-2xl" icon="material-symbols:call-sharp" />
           </button>
-          <button className="py-2 px-5 rounded-full border-2 uppercase border-black hover:bg-black hover:text-white transition font-medium">
+          <Link
+            href={"/enquiry"}
+            className="py-2 px-5 rounded-full border-2 uppercase border-black hover:bg-black hover:text-white transition font-medium"
+          >
             enquiry
-          </button>
+          </Link>
         </div>
       </div>
     </header>
