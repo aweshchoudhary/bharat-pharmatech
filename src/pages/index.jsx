@@ -7,7 +7,7 @@ import Image from "next/image";
 import StructuredData from "@/components/StructuredData";
 import products from "@/data/products.json";
 import categories from "@/data/categories.json";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import GlobalHead from "@/components/GlobalHead";
 
 export default function Home() {
@@ -92,7 +92,6 @@ export default function Home() {
     },
   ];
 
-  const isMounted = useRef(false);
   useEffect(() => {
     const setProductsData = () => {
       products.forEach((category) => {
@@ -111,10 +110,7 @@ export default function Home() {
         });
       });
     };
-    isMounted.current && setProductsData();
-    return () => {
-      isMounted.current = true;
-    };
+    setProductsData();
   }, []);
 
   const seoTags = {
