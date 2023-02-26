@@ -5,10 +5,10 @@ const TestimonialCard = () => {
     <div className=" px-3 w-full">
       <div className="p-5 bg-white text-black border min-[300px] grid place-items-center">
         <p>
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Voluptatibus et sequi nesciunt quasi nisi facilis natus ab dolor
           similique doloribus, eius fugiat minima quam. Deserunt molestiae
-          quaerat nulla mollitia accusamus"
+          quaerat nulla mollitia accusamus&quot;
         </p>
         <div className="flex items-center justify-between mt-3 w-full">
           <h3 className="font-medium">Awesh Choudhary</h3>

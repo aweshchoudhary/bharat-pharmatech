@@ -11,12 +11,12 @@ const Card = ({ data }) => {
           .toLowerCase()}`}
         className="card"
       >
-        <figure className="w-full sm:h-[300px] h-[250px] bg-gray-200">
+        <figure className="w-full sm:h-[300px] h-[250px] bg-white border overflow-hidden">
           <Image
-            src={"https://source.unsplash.com/random"}
+            src={data.images[0]}
             width="500"
             height="500"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain hover:scale-110 transition"
             alt={data.title + " - bharat pharmatech"}
           />
           <figcaption className="opacity-0">{data.title}</figcaption>

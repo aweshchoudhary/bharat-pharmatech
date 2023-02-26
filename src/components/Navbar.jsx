@@ -13,13 +13,16 @@ const Navbar = () => {
       <header>
         <div className="bg-black w-full md:flex hidden justify-between py-2 px-5 text-white">
           <div>
-            <Link href={"/"} className="flex items-center gap-2">
+            <a
+              href={"mailto:someone@example.com"}
+              className="flex items-center gap-2"
+            >
               <Icon icon="ic:baseline-email" className="text-2xl" />
               bharatpharmatech@gmail.com
-            </Link>
+            </a>
           </div>
           <div>
-            <a href="/" className="flex items-center gap-2">
+            <a href="tel:+919687849837" className="flex items-center gap-2">
               <Icon icon="material-symbols:call-sharp" className="text-2xl" />
               +91 9687849837
             </a>
@@ -84,9 +87,10 @@ const Navbar = () => {
                         className="hover:bg-gray-50 relative"
                       >
                         <Link
-                          href={
-                            "/" + item.name.split(" ").join("-").toLowerCase()
-                          }
+                          href={`/categories/${item.id}/${item.name
+                            .split(" ")
+                            .join("-")
+                            .toLowerCase()}`}
                           className="py-3 px-4 w-full block"
                         >
                           {item.name}
@@ -125,7 +129,7 @@ const Navbar = () => {
                 itemProp="name"
                 className="h-full flex items-center hover:border-b-2 border-black"
               >
-                <Link title="Contact Us" href="/enquiry">
+                <Link title="Contact Us" href="/contact-us">
                   Contact Us
                 </Link>
               </li>
@@ -145,7 +149,7 @@ const Navbar = () => {
               <Icon className="text-2xl" icon="material-symbols:call-sharp" />
             </button>
             <Link
-              href={"/enquiry"}
+              href={"/contact-us"}
               className="py-2 px-5 md:block hidden rounded-full border-2 uppercase border-black hover:bg-black hover:text-white transition font-medium"
             >
               enquiry
@@ -195,46 +199,6 @@ const Navbar = () => {
                 About Us
               </Link>
             </li>
-            {/* <li className="px-3 py-1">
-              <Link
-                href="/"
-                className="flex items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
-              >
-                <Icon
-                  icon="ic:baseline-keyboard-arrow-right"
-                  className="text-2xl"
-                />{" "}
-                Categories
-              </Link>
-              <ul className="px-3 mt-2">
-                <li>
-                  <Link
-                    className="border-b bg-black text-white px-2 py-1 w-full flex items-center gap-3"
-                    href="/"
-                  >
-                    <Icon
-                      icon="material-symbols:keyboard-double-arrow-right"
-                      className="text-2xl"
-                    />{" "}
-                    Category Name
-                  </Link>
-                  <ul className="mt-2">
-                    <li>
-                      <Link
-                        className="border-b pb-2 w-full flex items-center gap-0"
-                        href="/"
-                      >
-                        <Icon
-                          icon="material-symbols:arrow-right-sharp"
-                          className="text-3xl"
-                        />{" "}
-                        Category Name
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li> */}
             <Dropdown />
             <li className="px-3 py-1">
               <Link

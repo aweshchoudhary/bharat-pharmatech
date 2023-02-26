@@ -4,6 +4,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import products from "@/data/products.json";
 import categories from "@/data/categories.json";
+import Head from "next/head";
+import StructuredData from "@/components/StructuredData";
+import Image from "next/image";
+import GlobalHead from "@/components/GlobalHead";
 
 const Product = () => {
   const router = useRouter();
@@ -11,7 +15,6 @@ const Product = () => {
   const [data, setData] = useState(null);
   const [categoryName, setCategoryName] = useState(null);
   const [currentCategoryProducts, setCurrentCategoryProducts] = useState(null);
-
   useEffect(() => {
     const fetchProduct = () => {
       products.forEach((category) => {
@@ -31,10 +34,79 @@ const Product = () => {
       });
     };
     fetchProduct();
-  }, [product]);
-  console.log(data);
+  }, [product, categoryid]);
+
+  const seoTags = {
+    title: data?.title.toUpperCase(),
+    description: `Bharat Pharmatech and Pharma machinery & Spares, Best priced and indiamart ratings ${data?.title}.`,
+    image: data?.images[0],
+    url:
+      "https://www.bharatpharmatech.com/" +
+      data?.title.split(" ").join("-").toLowerCase(),
+  };
+
   return data ? (
     <>
+      <Head>
+        <title>{seoTags.title}</title>
+        <GlobalHead />
+        {/* Titles */}
+        <meta name="title" content={seoTags.title} />
+        <meta property="og:title" content={seoTags.title} />
+        <meta property="twitter:title" content={seoTags.title} />
+        {/* Descriptions */}
+        <meta name="description" content={seoTags.description} />
+        <meta property="og:description" content={seoTags.description} />
+        <meta property="twitter:description" content={seoTags.description} />
+        {/* Urls */}
+        <meta property="og:url" content={seoTags.url} />
+        <meta property="twitter:url" content={seoTags.url} />
+        <meta name="twitter:domain" content={seoTags.url} />
+        {/* Images */}
+        <meta property="og:image" content={seoTags.image} />
+        <meta property="twitter:image" content={seoTags.image} />
+        <link rel="canonical" href={seoTags.url} />
+        <StructuredData
+          data={{
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            name: seoTags.title,
+            image: seoTags.image,
+            description: seoTags.description,
+            brand: {
+              "@type": "Brand",
+              name: "Bharat Pharmatech",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5",
+              bestRating: "5",
+              worstRating: "5",
+              ratingCount: "400",
+            },
+          }}
+        />
+        <StructuredData
+          data={{
+            "@context": "https://schema.org/",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://bharatpharmatech.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: seoTags.title.split(" ").join("-").toLowerCase(),
+                item: seoTags.url,
+              },
+            ],
+          }}
+        />
+      </Head>
       <section className="border-b flex">
         <div className="w-[60%] shrink-0 p-5 border-r">
           <h1 className="text-3xl font-semibold uppercase">{data.title}</h1>
@@ -42,11 +114,19 @@ const Product = () => {
             <div className="tag px-5 py-2 rounded-full bg-black text-white w-fit mt-3 font-medium">
               {categoryName}
             </div>
-            <div className="tag px-5 py-2 rounded-full bg-black text-white w-fit mt-3 font-medium">
+            {/* <div className="tag px-5 py-2 rounded-full bg-black text-white w-fit mt-3 font-medium">
               Model: PMS-27-D
-            </div>
+            </div> */}
           </div>
-          <div className="w-full h-[500px] bg-gray-100 mt-5"></div>
+          <div className="w-full h-[450px] flex items-center justify-center bg-gray-100 mt-5">
+            <Image
+              src={data.images[0]}
+              width={500}
+              height={500}
+              className="h-full w-auto object-contain"
+              alt={data.title + " - bharat pharmatech"}
+            />
+          </div>
         </div>
         <div className="w-[40%] shrink-0 p-5">
           <h3 className="text-2xl font-semibold">Similar Machines</h3>

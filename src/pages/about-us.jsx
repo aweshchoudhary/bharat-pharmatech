@@ -1,8 +1,38 @@
+import GlobalHead from "@/components/GlobalHead";
+import Head from "next/head";
 import Image from "next/image";
 
 const AboutUs = () => {
+  const seoTags = {
+    title: "About Us",
+    description:
+      "Bharat Pharmatech is a Brand of the Pharma Machinery & Spares Company, located in Ahmadabad, Gujarat manufacturer & supplier of Pharma Machinery & Change Parts",
+    image:
+      "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398893/background_rgz96h.webp",
+    url: "https://www.bharatpharmatech.com/about-us",
+  };
   return (
     <>
+      <Head>
+        <title>{seoTags.title}</title>
+        <GlobalHead />
+        {/* Titles */}
+        <meta name="title" content={seoTags.title} />
+        <meta property="og:title" content={seoTags.title} />
+        <meta property="twitter:title" content={seoTags.title} />
+        {/* Descriptions */}
+        <meta name="description" content={seoTags.description} />
+        <meta property="og:description" content={seoTags.description} />
+        <meta property="twitter:description" content={seoTags.description} />
+        {/* Urls */}
+        <meta property="og:url" content={seoTags.url} />
+        <meta property="twitter:url" content={seoTags.url} />
+        <meta name="twitter:domain" content={seoTags.url} />
+        {/* Images */}
+        <meta property="og:image" content={seoTags.image} />
+        <meta property="twitter:image" content={seoTags.image} />
+        <link rel="canonical" href={seoTags.url} />
+      </Head>
       <section className="w-full relative h-[300px] bg-black">
         <h1 className="text-white text-6xl font-bold w-full px-5 absolute top-1/2 -translate-y-1/2 left-0 z-20">
           About Us
@@ -35,17 +65,18 @@ const AboutUs = () => {
             <strong>Pharma Machinery & Spares</strong> Company, located in{" "}
             <em>Ahmadabad, Gujarat</em> manufacturer & supplier of Pharma
             Machinery & Change Parts of Compression Machines, Tableting
-            Equipment’s Allied Machines of internationally accepted standards.
+            Equipment&apos;s Allied Machines of internationally accepted
+            standards.
             <br />
             <br />
             Our mission is to provide turnkey solutions to quality conscious
             global clients. We have approved list of vendors who will
             manufacture Pharma Machinery & Change parts of Compression Machine
-            and Tableting Equipment’s / Allied Machines as per our standards &
-            specifications. We help our vendors to improve technology and
-            product features. We are exporting Pharma Machine & Change parts of
-            Compression Machine and Tableting Equipment’s / Allied Machines to
-            the most demanding market of Asian Countries.
+            and Tableting Equipment&quot;s / Allied Machines as per our
+            standards & specifications. We help our vendors to improve
+            technology and product features. We are exporting Pharma Machine &
+            Change parts of Compression Machine and Tableting Equipment&quot;s /
+            Allied Machines to the most demanding market of Asian Countries.
           </p>
           <h2 className="my-5 text-3xl font-semibold capitalize">
             range of tablet press machine
@@ -83,10 +114,10 @@ const AboutUs = () => {
             </li>
           </ul>
           <h2 className="my-5 text-3xl font-semibold">
-            Tableting equipment's / allied machines
+            Tableting equipment&apos;s / allied machines
           </h2>
           <ul className="ml-5 list-disc">
-            <li>Tableting Tooling’s – Punch Die Sets for Tablet Press</li>
+            <li>Tableting Tooling&apos;s – Punch Die Sets for Tablet Press</li>
             <li>Dust Extractor Machine</li>
             <li>De Burring De Dusting Machine</li>
             <li>Oscillating Granulator</li>
