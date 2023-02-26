@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Tablet Press Machinery"
+  },
+  {
+    "id": 2,
+    "name": "Granulation Machinery"
+  },
+  {
+    "id": 3,
+    "name": "Milling Machinery"
+  },
+  {
+    "id": 4,
+    "name": "Roll Compactor Machinery"
+  },
+  {
+    "id": 5,
+    "name": "Allaid Machinery"
+  },
+  {
+    "id": 6,
+    "name": "Drying Machinery"
+  }
+]

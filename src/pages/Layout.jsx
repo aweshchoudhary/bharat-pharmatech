@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
 
 const Layout = ({ children }) => {
   return (
@@ -8,6 +7,10 @@ const Layout = ({ children }) => {
       <main>
         <article>{children}</article>
       </main>
+      <footer className="bg-black text-white w-full p-5 mt-10 flex items-center justify-between">
+        <h3 className="text-3xl font-semibold">Bharat Pharmatech</h3>
+        <p>@2023 All Right Reserved By Bharat Bharat Pharmatech</p>
+      </footer>
     </>
   );
 };

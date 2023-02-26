@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import Card from "./Card";
 import { useRef } from "react";
 
-const SliderSection = ({ heading }) => {
+const SliderSection = ({ heading, data }) => {
   const sliderRef = useRef(null);
   const settings = {
     dots: false,
@@ -55,30 +55,13 @@ const SliderSection = ({ heading }) => {
         </div>
       </div>
       <Slider ref={sliderRef} {...settings}>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
+        {data.map((item, i) => {
+          return (
+            <div key={i}>
+              <Card data={item} />
+            </div>
+          );
+        })}
       </Slider>
     </section>
   );

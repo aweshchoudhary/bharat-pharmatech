@@ -2,9 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import categories from "@/data/categories.json";
+import products from "@/data/products.json";
 
 const Navbar = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
+
   return (
     <>
       <header>
@@ -24,59 +27,107 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-between h-[70px] px-5 border-b bg-white">
           <div className="logo">
-            <Image src={"/min-logo.png"} width={200} height={41} />
+            <Link href={"/"} title="logo">
+              <Image
+                src={
+                  "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/min-logo_cj5eu0.png"
+                }
+                width={200}
+                height={41}
+                alt="logo transparent - bharat pharmatech"
+              />
+            </Link>
           </div>
           <nav className="navbar h-full md:block hidden">
-            <ul className="navitems flex items-center h-full gap-8 font-medium">
-              <li className="h-full flex items-center hover:border-b-2 border-black">
-                <Link href="/">Home</Link>
+            <ul
+              itemScope
+              itemType="http://www.schema.org/SiteNavigationElement"
+              className="navitems flex items-center h-full gap-8 font-medium"
+            >
+              <li
+                itemProp="name"
+                className="h-full flex items-center hover:border-b-2 border-black"
+              >
+                <Link title="Home" href="/">
+                  Home
+                </Link>
               </li>
-              <li className="h-full flex items-center hover:border-b-2 border-black">
-                <Link href="/about-us">About Us</Link>
+              <li
+                itemProp="name"
+                className="h-full flex items-center hover:border-b-2 border-black"
+              >
+                <Link title="About Us" href="/about-us">
+                  About Us
+                </Link>
               </li>
-              <li className="relative h-full flex items-center hover:border-b-2 border-black">
-                <Link href="/" className="flex items-center gap-1">
+              <li
+                itemProp="name"
+                className="relative h-full flex items-center hover:border-b-2 border-black"
+              >
+                <Link
+                  title="Products"
+                  href="/"
+                  className="flex items-center gap-1"
+                >
                   Products{" "}
                   <Icon
                     className="text-3xl"
                     icon="ic:outline-keyboard-arrow-down"
                   />
                 </Link>
-                <ul className="absolute top-full w-[280px] bg-white border">
-                  <li className="relative hover:bg-gray-50">
-                    <Link
-                      href="/categories/granulation-machinery"
-                      className="py-3 px-4 w-full block"
-                    >
-                      Granulation Machinery
-                    </Link>
-                  </li>
-                  <li className="hover:bg-gray-50 relative">
-                    <Link href="/" className="py-3 px-4 w-full block">
-                      Milling Machine
-                    </Link>
-                    <ul className="absolute top-0 left-full w-[280px] bg-white border">
-                      <li className="relative hover:bg-gray-50">
-                        <Link href="/" className="py-3 px-4 w-full block">
-                          Multi Mill Machine
+                <ul className="absolute z-50 top-full min-w-[280px] bg-white border">
+                  {categories.map((item) => {
+                    return (
+                      <li
+                        key={item.id}
+                        itemProp="name"
+                        className="hover:bg-gray-50 relative"
+                      >
+                        <Link
+                          href={
+                            "/" + item.name.split(" ").join("-").toLowerCase()
+                          }
+                          className="py-3 px-4 w-full block"
+                        >
+                          {item.name}
                         </Link>
+                        <ul className="absolute top-0 left-full min-w-[280px] bg-white border">
+                          {products.map((product, i) => {
+                            return (
+                              product.id === item.id &&
+                              product.data.map((item, i) => {
+                                return (
+                                  <li
+                                    className="relative hover:bg-gray-50"
+                                    key={i}
+                                  >
+                                    <Link
+                                      href={`/p/${product.id}/${item.title
+                                        .split(" ")
+                                        .join("-")
+                                        .toLowerCase()}`}
+                                      className="py-3 px-4 w-full block capitalize"
+                                    >
+                                      {item.title}
+                                    </Link>
+                                  </li>
+                                );
+                              })
+                            );
+                          })}
+                        </ul>
                       </li>
-                    </ul>
-                  </li>
-                  <li className="hover:bg-gray-50">
-                    <Link href="/" className="py-3 px-4 w-full block">
-                      Roll Compactor Machinery
-                    </Link>
-                  </li>
-                  <li className="hover:bg-gray-50">
-                    <Link href="/" className="py-3 px-4 w-full block">
-                      Tablet Press
-                    </Link>
-                  </li>
+                    );
+                  })}
                 </ul>
               </li>
-              <li className="h-full flex items-center hover:border-b-2 border-black">
-                <Link href="/testimonials">Testimonials</Link>
+              <li
+                itemProp="name"
+                className="h-full flex items-center hover:border-b-2 border-black"
+              >
+                <Link title="Contact Us" href="/enquiry">
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </nav>
@@ -109,7 +160,14 @@ const Navbar = () => {
       >
         <div className="flex p-5 items-center justify-between">
           <div className="logo">
-            <Image src={"/min-logo.png"} width={200} height={41} />
+            <Image
+              src={
+                "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/min-logo_cj5eu0.png"
+              }
+              width={200}
+              height={41}
+              alt="logo transparent - bharat pharmatech"
+            />
           </div>
           <button onClick={() => setToggleSidebar(false)} className="text-3xl">
             <Icon icon={"uil:times"} />
@@ -253,7 +311,7 @@ const Dropdown = () => {
   return (
     menu &&
     menu.map((item, i) => {
-      return <MainCategory item={item} />;
+      return <MainCategory key={i} item={item} />;
     })
   );
 };
@@ -272,7 +330,7 @@ const MainCategory = ({ item }) => {
       {isMenu && item.submenu
         ? item.submenu.map((subitem, i) => {
             return (
-              <ul className="px-3 mt-2">
+              <ul className="px-3 mt-2" key={i}>
                 <SubCategory subitem={subitem} />
               </ul>
             );
@@ -299,7 +357,7 @@ const SubCategory = ({ subitem }) => {
       <ul className="mt-2">
         {isMenu && subitem.submenu
           ? subitem.submenu.map((subsubitem, i) => {
-              return <LastCategory subsubitem={subsubitem} />;
+              return <LastCategory key={i} subsubitem={subsubitem} />;
             })
           : null}
       </ul>
