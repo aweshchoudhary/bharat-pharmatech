@@ -66,8 +66,8 @@ const Product = () => {
         <meta property="og:image" content={seoTags.image} />
         <meta property="twitter:image" content={seoTags.image} />
         <link rel="canonical" href={seoTags.url} />
-        <StructuredData
-          data={{
+        <script type="application/ld+json">
+          {JSON.stringify({
             "@context": "https://schema.org/",
             "@type": "Product",
             name: seoTags.title,
@@ -84,10 +84,10 @@ const Product = () => {
               worstRating: "5",
               ratingCount: "400",
             },
-          }}
-        />
-        <StructuredData
-          data={{
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
             "@context": "https://schema.org/",
             "@type": "BreadcrumbList",
             itemListElement: [
@@ -104,12 +104,14 @@ const Product = () => {
                 item: seoTags.url,
               },
             ],
-          }}
-        />
+          })}
+        </script>
       </Head>
-      <section className="border-b flex">
-        <div className="w-[60%] shrink-0 p-5 border-r">
-          <h1 className="text-3xl font-semibold uppercase">{data.title}</h1>
+      <section className="border-b md:flex">
+        <div className="md:w-[60%] shrink-0 md:px-5 py-5 px-3 border-r">
+          <h1 className="md:text-3xl text-2xl font-semibold uppercase">
+            {data.title}
+          </h1>
           <div className="categories flex items-center gap-2">
             <div className="tag px-5 py-2 rounded-full bg-black text-white w-fit mt-3 font-medium">
               {categoryName}
@@ -118,7 +120,7 @@ const Product = () => {
               Model: PMS-27-D
             </div> */}
           </div>
-          <div className="w-full h-[450px] flex items-center justify-center bg-gray-100 mt-5">
+          <div className="w-full md:h-[450px] h-[300px] flex items-center justify-center bg-gray-100 mt-5">
             <Image
               src={data.images[0]}
               width={500}
@@ -128,7 +130,7 @@ const Product = () => {
             />
           </div>
         </div>
-        <div className="w-[40%] shrink-0 p-5">
+        <div className="md:block hidden w-[40%] shrink-0 p-5">
           <h3 className="text-2xl font-semibold">Similar Machines</h3>
           <ul className="my-5">
             {currentCategoryProducts.map((item, i) => {
@@ -157,7 +159,7 @@ const Product = () => {
           <button className="btn-outline ml-2">Get Quote</button>
         </div>
       </section>
-      <section className="p-5">
+      <section className="md:px-5 py-5 px-3">
         <div className="content">
           <h2 className="text-2xl mt-3 font-semibold uppercase">
             {data.title}
@@ -189,11 +191,9 @@ const Product = () => {
                 Technical Specification
               </h3>
               <figure
-                className="relative overflow-x-auto"
+                className="relative overflow-x-auto w-screen"
                 dangerouslySetInnerHTML={{ __html: data.content.table }}
-              >
-                {/* <figcaption>hell oadf</figcaption> */}
-              </figure>
+              ></figure>
             </>
           )}
         </div>

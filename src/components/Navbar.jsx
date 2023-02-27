@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import categories from "@/data/categories.json";
 import products from "@/data/products.json";
 
@@ -72,7 +72,7 @@ const Navbar = () => {
                   href="/"
                   className="flex items-center gap-1"
                 >
-                  Products{" "}
+                  Products
                   <Icon
                     className="text-3xl"
                     icon="ic:outline-keyboard-arrow-down"
@@ -136,9 +136,9 @@ const Navbar = () => {
             </ul>
           </nav>
           <div className="flex items-center gap-2">
-            <button>
+            <Link href={"/search"}>
               <Icon className="text-3xl" icon={"bx:search"} />
-            </button>
+            </Link>
             <button
               onClick={() => setToggleSidebar(true)}
               className="p-2 bg-black text-white rounded-lg md:hidden block"
@@ -177,41 +177,45 @@ const Navbar = () => {
             <Icon icon={"uil:times"} />
           </button>
         </div>
-        <nav className="navbar">
+        <nav className="navbar overflow-y-auto h-[60%]">
           <ul className="font-medium text-lg">
             <li className="px-3 py-1">
               <Link
                 href="/"
                 className="flex items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
+                onClick={() => setToggleSidebar(false)}
               >
                 <Icon icon="ri:home-2-line" className="text-2xl" /> Home
               </Link>
             </li>
             <li className="px-3 py-1">
               <Link
-                href="/"
+                href="/about-us"
                 className="flex items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
+                onClick={() => setToggleSidebar(false)}
               >
                 <Icon
                   icon="material-symbols:info-outline"
                   className="text-2xl"
-                />{" "}
+                />
                 About Us
               </Link>
             </li>
-            <Dropdown />
+            <Dropdown setOpen={setToggleSidebar} />
             <li className="px-3 py-1">
               <Link
-                href="/"
+                href="/search"
                 className="flex items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
+                onClick={() => setToggleSidebar(false)}
               >
                 <Icon icon="bx:search" className="text-2xl" /> Search
               </Link>
             </li>
             <li className="px-3 py-1">
               <Link
-                href="/"
+                href="/contact-us"
                 className="flex items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
+                onClick={() => setToggleSidebar(false)}
               >
                 <Icon icon="ic:baseline-local-phone" className="text-2xl" />{" "}
                 Contact Us
@@ -220,67 +224,37 @@ const Navbar = () => {
           </ul>
         </nav>
         <div className="flex items-center gap-3 justify-center mb-5 px-5">
-          <button className="w-1/2 justify-center border-black border-2 py-2 rounded-full flex items-center gap-3 bg-black text-white">
+          <a
+            href="tel:+919687849837"
+            className="w-1/2 justify-center border-black border-2 py-2 rounded-full flex items-center gap-3 bg-black text-white"
+          >
             <Icon icon="ic:baseline-local-phone" className="text-2xl" /> Call Us
-          </button>
-          <button className="w-1/2 justify-center py-2 rounded-full flex items-center gap-3 border-black border-2">
+          </a>
+          <Link
+            href={"/contact-us"}
+            onClick={() => setToggleSidebar(false)}
+            className="w-1/2 justify-center py-2 rounded-full flex items-center gap-3 border-black border-2"
+          >
             <Icon icon="fluent:form-28-regular" className="text-2xl" /> Enquiry
-          </button>
+          </Link>
         </div>
       </aside>
     </>
   );
 };
 
-const Dropdown = () => {
-  const menu = [
-    {
-      label: "Categories",
-      submenu: [
-        {
-          label: "Sub Category",
-          submenu: [
-            {
-              label: "last Category",
-            },
-          ],
-        },
-        {
-          label: "Sub Category",
-          submenu: [
-            {
-              label: "last Category",
-            },
-          ],
-        },
-        {
-          label: "Sub Category",
-          submenu: [
-            {
-              label: "last Category",
-            },
-          ],
-        },
-        {
-          label: "Sub Category",
-          submenu: [
-            {
-              label: "last Category",
-            },
-          ],
-        },
-      ],
-    },
-  ];
-  return (
-    menu &&
-    menu.map((item, i) => {
-      return <MainCategory key={i} item={item} />;
-    })
-  );
-};
-
-const MainCategory = ({ item }) => {
+const Dropdown = ({ setOpen }) => {
+  const [submenu, setSubmenu] = useState([]);
+  useEffect(() => {
+    async function createSubmenu() {
+      await categories.forEach((item) => {
+        setSubmenu((prev) => {
+          return [...prev, { id: item.id, label: item.name }];
+        });
+      });
+    }
+    createSubmenu();
+  }, []);
   const [isMenu, setIsMenu] = useState(false);
   return (
     <li className="px-3 py-1">
@@ -289,13 +263,13 @@ const MainCategory = ({ item }) => {
         className="flex w-full items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
       >
         <Icon icon="ic:baseline-keyboard-arrow-right" className="text-2xl" />
-        {item.label}
+        Products
       </button>
-      {isMenu && item.submenu
-        ? item.submenu.map((subitem, i) => {
+      {isMenu && submenu
+        ? submenu.map((subitem, i) => {
             return (
               <ul className="px-3 mt-2" key={i}>
-                <SubCategory subitem={subitem} />
+                <SubCategory setOpen={setOpen} subitem={subitem} />
               </ul>
             );
           })
@@ -304,7 +278,7 @@ const MainCategory = ({ item }) => {
   );
 };
 
-const SubCategory = ({ subitem }) => {
+const SubCategory = ({ subitem, setOpen }) => {
   const [isMenu, setIsMenu] = useState(false);
   return (
     <li>
@@ -315,26 +289,45 @@ const SubCategory = ({ subitem }) => {
         <Icon
           icon="material-symbols:keyboard-double-arrow-right"
           className="text-2xl"
-        />{" "}
+        />
         {subitem.label}
       </button>
-      <ul className="mt-2">
-        {isMenu && subitem.submenu
-          ? subitem.submenu.map((subsubitem, i) => {
-              return <LastCategory key={i} subsubitem={subsubitem} />;
-            })
-          : null}
+      <ul className="mt-1">
+        {isMenu &&
+          products.map((category) => {
+            return category.id === subitem.id
+              ? category.data.map((product, i) => {
+                  return (
+                    <LastCategory
+                      key={i}
+                      subsubitem={{ title: product.title, id: category.id }}
+                      setOpen={setOpen}
+                    />
+                  );
+                })
+              : null;
+          })}
       </ul>
     </li>
   );
 };
 
-const LastCategory = ({ subsubitem }) => {
+const LastCategory = ({ subsubitem, setOpen }) => {
   return (
     <li>
-      <Link className="border-b pb-2 w-full flex items-center gap-0" href="/">
-        <Icon icon="material-symbols:arrow-right-sharp" className="text-3xl" />{" "}
-        {subsubitem.label}
+      <Link
+        className="border-b capitalize pb-2 w-full flex items-center gap-0"
+        href={`/p/${subsubitem.id}/${subsubitem.title
+          .split(" ")
+          .join("-")
+          .toLowerCase()}`}
+        onClick={() => setOpen(false)}
+      >
+        <Icon
+          icon="material-symbols:arrow-right-sharp"
+          className="text-3xl shrink-0"
+        />
+        {subsubitem.title}
       </Link>
     </li>
   );

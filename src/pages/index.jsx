@@ -21,6 +21,54 @@ export default function Home() {
     autoplay: true,
     speed: 500,
   };
+  const [data, setData] = useState([]);
+  const slides = [
+    {
+      data: [
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/vegapress-ii-high-speed-rotary-tablet-press-cgmp-1361472_wccl23.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/double-sided-rotary-tableting-machine-500x500-1_dzidhk.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/single-rotary-tablet-press-1525858397-3844930_poduol.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435646/New-Project-1_chwso9.webp",
+      ],
+    },
+    {
+      data: [
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/HLB1GDyTQsfpK1RjSZFOq6y6nFXa2_zjnkhq.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/H2c409ac43541472b8050129d9e8d2583I_ypncng.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/mass-mixer-500x500-1_hwj2zg.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/pharmaceuticals-oscillating-granulator-500x500-1_qdibfm.webp",
+      ],
+    },
+    {
+      data: [
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/multi-mill-500x500-removebg-preview_zyoshu.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435748/comminuting-mill-500x500-1-edited_bbbujm.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435748/double-cone-blenders-500x500-1_fii1tu.webp",
+        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435748/octagonal-mixer-blender-500x500-1_hdqc57.webp",
+      ],
+    },
+  ];
+  useEffect(() => {
+    const setProductsData = () => {
+      products.forEach((category) => {
+        categories.forEach((item) => {
+          if (item.id === category.id) {
+            setData((prev) => {
+              return [
+                ...prev,
+                {
+                  name: item.name,
+                  data: category.data,
+                },
+              ];
+            });
+          }
+        });
+      });
+    };
+    setProductsData();
+  }, []);
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Corporation",
@@ -52,7 +100,7 @@ export default function Home() {
       "https://instagram.com/bharatpharmatech",
     ],
   };
-  const websieSchema = {
+  const websiteSchema = {
     "@context": "https://schema.org/",
     "@type": "WebSite",
     name: "Bharat Pharmatech",
@@ -63,56 +111,6 @@ export default function Home() {
       "query-input": "required name=search_term_string",
     },
   };
-  const [data, setData] = useState([]);
-
-  const slides = [
-    {
-      data: [
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/vegapress-ii-high-speed-rotary-tablet-press-cgmp-1361472_wccl23.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/double-sided-rotary-tableting-machine-500x500-1_dzidhk.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/single-rotary-tablet-press-1525858397-3844930_poduol.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435646/New-Project-1_chwso9.webp",
-      ],
-    },
-    {
-      data: [
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/HLB1GDyTQsfpK1RjSZFOq6y6nFXa2_zjnkhq.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/H2c409ac43541472b8050129d9e8d2583I_ypncng.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/mass-mixer-500x500-1_hwj2zg.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/pharmaceuticals-oscillating-granulator-500x500-1_qdibfm.webp",
-      ],
-    },
-    {
-      data: [
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435645/multi-mill-500x500-removebg-preview_zyoshu.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435748/comminuting-mill-500x500-1-edited_bbbujm.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435748/double-cone-blenders-500x500-1_fii1tu.webp",
-        "https://res.cloudinary.com/dzainnrtc/image/upload/v1677435748/octagonal-mixer-blender-500x500-1_hdqc57.webp",
-      ],
-    },
-  ];
-
-  useEffect(() => {
-    const setProductsData = () => {
-      products.forEach((category) => {
-        categories.forEach((item) => {
-          if (item.id === category.id) {
-            setData((prev) => {
-              return [
-                ...prev,
-                {
-                  name: item.name,
-                  data: category.data,
-                },
-              ];
-            });
-          }
-        });
-      });
-    };
-    setProductsData();
-  }, []);
-
   const seoTags = {
     title: "Bharat Pharmatech",
     description:
@@ -143,9 +141,12 @@ export default function Home() {
         <meta property="og:image" content={seoTags.image} />
         <meta property="twitter:image" content={seoTags.image} />
         <link rel="canonical" href={seoTags.url} />
-
-        <StructuredData data={organizationSchema} />
-        <StructuredData data={websieSchema} />
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
       </Head>
       <section className="hero-section w-full md:h-[550px] md:flex border-b">
         <div className="md:w-[50%] bg-black text-white h-full p-5 flex items-center">
