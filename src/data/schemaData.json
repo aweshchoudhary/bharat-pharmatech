@@ -1,0 +1,44 @@
+{
+  "organizationSchema": {
+    "@context": "https://schema.org",
+    "@type": "Corporation",
+    "name": "Bharat Pharmatech",
+    "alternateName": "Pharma Machinery & Spares",
+    "url": "https://bharatpharmatech.com",
+    "logo": "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "9687849837",
+        "contactType": "customer service",
+        "contactOption": "TollFree",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "Hindi", "Marathi", "Gujarati"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "0901507751",
+        "contactType": "technical support",
+        "contactOption": "TollFree",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "Hindi", "Marathi", "Gujarati"]
+      }
+    ],
+    "sameAs": [
+      "www.bharatpharmatech.com",
+      "https://youtube.com/@pharmamachineryspares",
+      "https://instagram.com/bharatpharmatech"
+    ]
+  },
+  "websiteSchema": {
+    "@context": "https://schema.org/",
+    "@type": "WebSite",
+    "name": "Bharat Pharmatech",
+    "url": "https://bharatpharmatech.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://bharatpharmatech.com/search/{search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+}

@@ -4,12 +4,11 @@ import Link from "next/link";
 import SliderSection from "@/components/SliderSection";
 import Slider from "react-slick";
 import Image from "next/image";
-import StructuredData from "@/components/StructuredData";
 import products from "@/data/products.json";
 import categories from "@/data/categories.json";
 import { useEffect, useState } from "react";
 import GlobalHead from "@/components/GlobalHead";
-
+import schema from "@/data/schemaData.json";
 export default function Home() {
   const settings = {
     dots: false,
@@ -69,48 +68,48 @@ export default function Home() {
     setProductsData();
   }, []);
 
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Corporation",
-    name: "Bharat Pharmatech",
-    alternateName: "Pharma Machinery & Spares",
-    url: "https://bharatpharmatech.com",
-    logo: "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png",
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        telephone: "9687849837",
-        contactType: "customer service",
-        contactOption: "TollFree",
-        areaServed: "IN",
-        availableLanguage: ["en", "Hindi", "Marathi", "Gujarati"],
-      },
-      {
-        "@type": "ContactPoint",
-        telephone: "0901507751",
-        contactType: "technical support",
-        contactOption: "TollFree",
-        areaServed: "IN",
-        availableLanguage: ["en", "Hindi", "Marathi", "Gujarati"],
-      },
-    ],
-    sameAs: [
-      "www.bharatpharmatech.com",
-      "https://youtube.com/@pharmamachineryspares",
-      "https://instagram.com/bharatpharmatech",
-    ],
-  };
-  const websiteSchema = {
-    "@context": "https://schema.org/",
-    "@type": "WebSite",
-    name: "Bharat Pharmatech",
-    url: "https://bharatpharmatech.com",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://bharatpharmatech.com/search/{search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
-  };
+  // const organizationSchema = JSON.stringify({
+  //   "@context": "https://schema.org",
+  //   "@type": "Corporation",
+  //   name: "Bharat Pharmatech",
+  //   alternateName: "Pharma Machinery & Spares",
+  //   url: "https://bharatpharmatech.com",
+  //   logo: "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png",
+  //   contactPoint: [
+  //     {
+  //       "@type": "ContactPoint",
+  //       telephone: "9687849837",
+  //       contactType: "customer service",
+  //       contactOption: "TollFree",
+  //       areaServed: "IN",
+  //       availableLanguage: ["en", "Hindi", "Marathi", "Gujarati"],
+  //     },
+  //     {
+  //       "@type": "ContactPoint",
+  //       telephone: "0901507751",
+  //       contactType: "technical support",
+  //       contactOption: "TollFree",
+  //       areaServed: "IN",
+  //       availableLanguage: ["en", "Hindi", "Marathi", "Gujarati"],
+  //     },
+  //   ],
+  //   sameAs: [
+  //     "www.bharatpharmatech.com",
+  //     "https://youtube.com/@pharmamachineryspares",
+  //     "https://instagram.com/bharatpharmatech",
+  //   ],
+  // });
+  // const websiteSchema = JSON.stringify({
+  //   "@context": "https://schema.org/",
+  //   "@type": "WebSite",
+  //   name: "Bharat Pharmatech",
+  //   url: "https://bharatpharmatech.com",
+  //   potentialAction: {
+  //     "@type": "SearchAction",
+  //     target: "https://bharatpharmatech.com/search/{search_term_string}",
+  //     "query-input": "required name=search_term_string",
+  //   },
+  // });
   const seoTags = {
     title: "Bharat Pharmatech",
     description:
@@ -142,10 +141,10 @@ export default function Home() {
         <meta property="twitter:image" content={seoTags.image} />
         <link rel="canonical" href={seoTags.url} />
         <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
+          {JSON.stringify(schema.organizationSchema)}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(websiteSchema)}
+          {JSON.stringify(schema.websiteSchema)}
         </script>
       </Head>
       <section className="hero-section w-full md:h-[550px] md:flex border-b">
