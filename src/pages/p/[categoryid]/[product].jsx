@@ -155,8 +155,12 @@ const Product = () => {
               );
             })}
           </ul>
-          <button className="btn-filled">Enquiry</button>
-          <button className="btn-outline ml-2">Get Quote</button>
+          <button name="enquiry" className="btn-filled">
+            Enquiry
+          </button>
+          <button name="get quote" className="btn-outline ml-2">
+            Get Quote
+          </button>
         </div>
       </section>
       <section className="md:px-5 py-5 px-3">

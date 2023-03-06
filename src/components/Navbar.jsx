@@ -145,12 +145,16 @@ const Navbar = () => {
               <Icon className="text-3xl" icon={"bx:search"} />
             </Link>
             <button
+              name="Toggle Sidebar"
               onClick={() => setToggleSidebar(true)}
               className="p-2 bg-black text-white rounded-lg md:hidden block"
             >
               <Icon className="text-3xl" icon={"humbleicons:bars"} />
             </button>
-            <button className="p-3 bg-black md:block hidden text-white rounded-full uppercase">
+            <button
+              name="Call Button"
+              className="p-3 bg-black md:block hidden text-white rounded-full uppercase"
+            >
               <Icon className="text-2xl" icon="material-symbols:call-sharp" />
             </button>
             <Link
@@ -178,7 +182,11 @@ const Navbar = () => {
               alt="logo transparent - bharat pharmatech"
             />
           </div>
-          <button onClick={() => setToggleSidebar(false)} className="text-3xl">
+          <button
+            name="Close Menu"
+            onClick={() => setToggleSidebar(false)}
+            className="text-3xl"
+          >
             <Icon icon={"uil:times"} />
           </button>
         </div>
@@ -264,6 +272,7 @@ const Dropdown = ({ setOpen }) => {
   return (
     <li className="px-3 py-1">
       <button
+        name="open submenu"
         onClick={() => setIsMenu((prev) => !prev)}
         className="flex w-full items-center gap-4 hover:bg-gray-100 px-5 py-2 rounded-lg"
       >
@@ -288,6 +297,7 @@ const SubCategory = ({ subitem, setOpen }) => {
   return (
     <li>
       <button
+        name="open submenu"
         onClick={() => setIsMenu((prev) => !prev)}
         className="border-b bg-black text-white px-2 py-1 w-full flex items-center gap-3"
       >

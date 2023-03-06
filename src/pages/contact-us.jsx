@@ -167,7 +167,10 @@ const enquiry = () => {
                 placeholder="Message"
               />
             </div>
-            <button className="rounded-full bg-black text-white px-5 py-3">
+            <button
+              name="submit"
+              className="rounded-full bg-black text-white px-5 py-3"
+            >
               Submit
             </button>
           </form>
