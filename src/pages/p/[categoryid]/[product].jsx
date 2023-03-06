@@ -41,7 +41,7 @@ const Product = () => {
     description: `Bharat Pharmatech and Pharma machinery & Spares, Best priced and indiamart ratings ${data?.title}.`,
     image: data?.images[0],
     url:
-      "https://www.bharatpharmatech.com/" +
+      "https://www.bharatpharmatech.com/p/" +
       data?.title.split(" ").join("-").toLowerCase(),
   };
 
