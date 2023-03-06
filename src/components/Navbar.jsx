@@ -14,15 +14,20 @@ const Navbar = () => {
         <div className="bg-black w-full md:flex hidden justify-between py-2 px-5 text-white">
           <div>
             <a
-              href={"mailto:someone@example.com"}
+              href={"mailto:bharatpharmatech@gmail.com"}
               className="flex items-center gap-2"
+              title="Send Email"
             >
               <Icon icon="ic:baseline-email" className="text-2xl" />
               bharatpharmatech@gmail.com
             </a>
           </div>
           <div>
-            <a href="tel:+919687849837" className="flex items-center gap-2">
+            <a
+              href="tel:+919687849837"
+              title="Call Us"
+              className="flex items-center gap-2"
+            >
               <Icon icon="material-symbols:call-sharp" className="text-2xl" />
               +91 9687849837
             </a>

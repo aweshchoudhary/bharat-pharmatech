@@ -210,12 +210,14 @@ export default function Home() {
             <div className="flex items-center mt-5">
               <Link
                 href={"/contact-us"}
+                title="Contact Us"
                 className="block  w-fit px-5 py-2 rounded-full bg-white text-black  font-medium"
               >
                 Enquiry Now
               </Link>
               <Link
                 href={"/about-us"}
+                title="About Us"
                 className="px-5 flex items-center underline underline-offset-4"
               >
                 Learn More
@@ -340,6 +342,7 @@ export default function Home() {
           </div>
           <Link
             href={"/about-us"}
+            title="About Us"
             className="block px-7 w-fit mt-5 py-3 bg-black text-white rounded-full"
           >
             Learn More
