@@ -235,12 +235,10 @@ export default function Home() {
               <Link
                 href={"/about-us"}
                 title="About Us"
+                aria-label="get more information visit about us page"
                 className="px-5 flex items-center underline underline-offset-4"
               >
                 Learn More
-                <span className="screen-reader-text">
-                  get more information visit about us page
-                </span>
               </Link>
             </div>
           </div>
@@ -364,11 +362,9 @@ export default function Home() {
             href={"/about-us"}
             title="About Us"
             className="block px-7 w-fit mt-5 py-3 bg-black text-white rounded-full"
+            aria-label="get more information visit about us page"
           >
             Learn More
-            <span className="screen-reader-text">
-              get more information visit about us page
-            </span>
           </Link>
         </div>
       </section>
