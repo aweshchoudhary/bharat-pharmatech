@@ -124,7 +124,7 @@ const enquiry = () => {
           <h2 className="text-4xl mb-5 font-semibold capitalize">
             Get in touch with us, Send your enquiry
           </h2>
-          <form>
+          <form name="enquiry" netlify>
             <div className="my-3">
               <input
                 type="text"
