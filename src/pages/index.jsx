@@ -8,7 +8,6 @@ import products from "@/data/products.json";
 import categories from "@/data/categories.json";
 import { useEffect, useState } from "react";
 import GlobalHead from "@/components/GlobalHead";
-import schema from "@/data/schemaData.json";
 export default function Home() {
   const settings = {
     dots: false,
@@ -118,12 +117,53 @@ export default function Home() {
       "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png",
     url: "https://www.bharatpharmatech.com/",
   };
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Corporation",
+    name: "Bharat Pharmatech",
+    alternateName: "Pharma Machinery & Spares",
+    url: "https://bharatpharmatech.com",
+    logo: "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "9687849837",
+        contactType: "customer service",
+        contactOption: "TollFree",
+        areaServed: "IN",
+        availableLanguage: ["en", "Hindi", "Marathi", "Gujarati"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: "0901507751",
+        contactType: "technical support",
+        contactOption: "TollFree",
+        areaServed: "IN",
+        availableLanguage: ["en", "Hindi", "Marathi", "Gujarati"],
+      },
+    ],
+    sameAs: [
+      "www.bharatpharmatech.com",
+      "https://youtube.com/@pharmamachineryspares",
+      "https://instagram.com/bharatpharmatech",
+    ],
+  };
+  const websiteSchema = {
+    "@context": "https://schema.org/",
+    "@type": "WebSite",
+    name: "Bharat Pharmatech",
+    url: "https://bharatpharmatech.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://bharatpharmatech.com/search/{search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
 
   return (
     <>
       <Head>
         <title>{seoTags.title}</title>
-        <GlobalHead />
         {/* Titles */}
         <meta name="title" content={seoTags.title} />
         <meta property="og:title" content={seoTags.title} />
@@ -140,12 +180,17 @@ export default function Home() {
         <meta property="og:image" content={seoTags.image} />
         <meta property="twitter:image" content={seoTags.image} />
         <link rel="canonical" href={seoTags.url} />
-        <script type="application/ld+json">
-          {JSON.stringify(schema.organizationSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(schema.websiteSchema)}
-        </script>
+        <GlobalHead />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </Head>
       <section className="hero-section w-full md:h-[550px] md:flex border-b">
         <div className="md:w-[50%] bg-black text-white h-full p-5 flex items-center">

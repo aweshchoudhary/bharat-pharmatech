@@ -3,7 +3,6 @@ import React from "react";
 const GlobalHead = () => {
   return (
     <>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta name="language" content="English" />
       <meta property="og:type" content="website" />
