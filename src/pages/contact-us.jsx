@@ -168,7 +168,7 @@ const enquiry = () => {
               />
             </div>
             <button
-              name="submit"
+              aria-label="submit"
               className="rounded-full bg-black text-white px-5 py-3"
             >
               Submit

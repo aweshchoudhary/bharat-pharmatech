@@ -47,13 +47,13 @@ const SliderSection = ({ heading, data }) => {
         </h2>
         <div className="shrink-0">
           <button
-            name="slide left"
+            aria-label="slide left"
             onClick={() => sliderRef?.current?.slickPrev()}
           >
             <Icon className="text-5xl" icon="ic:baseline-arrow-circle-left" />
           </button>
           <button
-            name="slide right"
+            aria-label="slide right"
             onClick={() => sliderRef?.current?.slickNext()}
           >
             <Icon className="text-5xl" icon="ic:baseline-arrow-circle-right" />
