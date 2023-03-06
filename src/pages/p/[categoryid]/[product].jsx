@@ -49,7 +49,6 @@ const Product = () => {
     <>
       <Head>
         <title>{seoTags.title}</title>
-        <GlobalHead />
         {/* Titles */}
         <meta name="title" content={seoTags.title} />
         <meta property="og:title" content={seoTags.title} />
@@ -65,47 +64,71 @@ const Product = () => {
         {/* Images */}
         <meta property="og:image" content={seoTags.image} />
         <meta property="twitter:image" content={seoTags.image} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="language" content="English" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Bharat Pharmatech" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="bharatpharmatech" />
+        <meta name="twitter:creator" content="bharatpharmatech"></meta>
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <link
+          rel="shortcut icon"
+          href="https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png"
+        />
         <link rel="canonical" href={seoTags.url} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org/",
-            "@type": "Product",
-            name: seoTags.title,
-            image: seoTags.image,
-            description: seoTags.description,
-            brand: {
-              "@type": "Brand",
-              name: "Bharat Pharmatech",
-            },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5",
-              bestRating: "5",
-              worstRating: "5",
-              ratingCount: "400",
-            },
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org/",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://bharatpharmatech.com/",
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org/",
+              "@type": "Product",
+              name: seoTags.title,
+              image: seoTags.image,
+              description: seoTags.description,
+              brand: {
+                "@type": "Brand",
+                name: "Bharat Pharmatech",
               },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: seoTags.title.split(" ").join("-").toLowerCase(),
-                item: seoTags.url,
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5",
+                bestRating: "5",
+                worstRating: "5",
+                ratingCount: "400",
               },
-            ],
-          })}
-        </script>
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org/",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://bharatpharmatech.com/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: seoTags.title.split(" ").join("-").toLowerCase(),
+                  item: seoTags.url,
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
       <section className="border-b md:flex">
         <div className="md:w-[60%] shrink-0 md:px-5 py-5 px-3 border-r">

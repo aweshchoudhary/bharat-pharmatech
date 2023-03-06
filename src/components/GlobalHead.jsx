@@ -14,7 +14,7 @@ const GlobalHead = () => {
       <meta name="twitter:creator" content="bharatpharmatech"></meta>
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <link
-        rel="icon"
+        rel="shortcut icon"
         href="https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/apple-touch-icon_cvh6w8.png"
       />
       <link
