@@ -141,18 +141,18 @@ const Navbar = () => {
             </ul>
           </nav>
           <div className="flex items-center gap-2">
-            <Link href={"/search"}>
+            <Link title="search" href={"/search"}>
               <Icon className="text-3xl" icon={"bx:search"} />
             </Link>
             <button
-              name="Toggle Sidebar"
+              name="toggle sidebar"
               onClick={() => setToggleSidebar(true)}
               className="p-2 bg-black text-white rounded-lg md:hidden block"
             >
               <Icon className="text-3xl" icon={"humbleicons:bars"} />
             </button>
             <button
-              name="Call Button"
+              name="call"
               className="p-3 bg-black md:block hidden text-white rounded-full uppercase"
             >
               <Icon className="text-2xl" icon="material-symbols:call-sharp" />

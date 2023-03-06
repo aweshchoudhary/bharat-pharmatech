@@ -221,6 +221,9 @@ export default function Home() {
                 className="px-5 flex items-center underline underline-offset-4"
               >
                 Learn More
+                <span className="screen-reader-text">
+                  get more information visit about us page
+                </span>
               </Link>
             </div>
           </div>
@@ -346,6 +349,9 @@ export default function Home() {
             className="block px-7 w-fit mt-5 py-3 bg-black text-white rounded-full"
           >
             Learn More
+            <span className="screen-reader-text">
+              get more information visit about us page
+            </span>
           </Link>
         </div>
       </section>
