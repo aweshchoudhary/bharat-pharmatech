@@ -7,13 +7,13 @@ import Image from "next/image";
 
 const Product = ({ product, categoryItems, categoryName, productUrl }) => {
   const seoTags = {
-    title: product.title,
-    description: `Bharat Pharmatech and Pharma machinery & Spares, Best priced and indiamart ratings ${product.title}.`,
-    image: product.images[0],
+    title: product?.title,
+    description: `Bharat Pharmatech and Pharma machinery & Spares, Best priced and indiamart ratings ${product?.title}.`,
+    image: product?.images[0],
     url: "https://www.bharatpharmatech.com" + productUrl,
   };
 
-  return (
+  return product ? (
     <>
       <Head>
         <title>{seoTags.title}</title>
@@ -195,6 +195,8 @@ const Product = ({ product, categoryItems, categoryName, productUrl }) => {
         </div>
       </section>
     </>
+  ) : (
+    <h2>Loading...</h2>
   );
 };
 
