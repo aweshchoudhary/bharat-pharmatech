@@ -1,49 +1,19 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import products from "@/data/products.json";
 import categories from "@/data/categories.json";
 import Head from "next/head";
 import Image from "next/image";
 
-const Product = () => {
-  const router = useRouter();
-  const { product, categoryid } = router.query;
-  const [data, setData] = useState(null);
-  const [categoryName, setCategoryName] = useState(null);
-  const [currentCategoryProducts, setCurrentCategoryProducts] = useState(null);
-  useEffect(() => {
-    const fetchProduct = () => {
-      products.forEach((category) => {
-        if (+category.id === +categoryid) {
-          setCurrentCategoryProducts(category.data);
-          category.data.forEach((matchItem) => {
-            if (
-              matchItem.title.split(" ").join("-").toLowerCase() === product
-            ) {
-              categories.forEach((item) => {
-                if (+item.id === +categoryid) setCategoryName(item.name);
-              });
-              setData(matchItem);
-            }
-          });
-        }
-      });
-    };
-    fetchProduct();
-  }, [product, categoryid]);
-
+const Product = ({ product, categoryItems, categoryName, productUrl }) => {
   const seoTags = {
-    title: data?.title.toUpperCase(),
-    description: `Bharat Pharmatech and Pharma machinery & Spares, Best priced and indiamart ratings ${data?.title}.`,
-    image: data?.images[0],
-    url:
-      "https://www.bharatpharmatech.com/p/" +
-      data?.title.split(" ").join("-").toLowerCase(),
+    title: product.title,
+    description: `Bharat Pharmatech and Pharma machinery & Spares, Best priced and indiamart ratings ${product.title}.`,
+    image: product.images[0],
+    url: "https://www.bharatpharmatech.com" + productUrl,
   };
 
-  return data ? (
+  return (
     <>
       <Head>
         <title>{seoTags.title}</title>
@@ -131,7 +101,7 @@ const Product = () => {
       <section className="border-b md:flex">
         <div className="md:w-[60%] shrink-0 md:px-5 py-5 px-3 border-r">
           <h1 className="md:text-3xl text-2xl font-semibold uppercase">
-            {data.title}
+            {product.title}
           </h1>
           <div className="categories flex items-center gap-2">
             <div className="tag px-5 py-2 rounded-full bg-black text-white w-fit mt-3 font-medium">
@@ -143,11 +113,11 @@ const Product = () => {
           </div>
           <div className="w-full md:h-[450px] h-[300px] flex items-center justify-center bg-gray-100 mt-5">
             <Image
-              src={data.images[0]}
+              src={product.images[0]}
               width={500}
               height={500}
               className="h-full w-auto object-contain"
-              alt={data.title + " - bharat pharmatech"}
+              alt={product.title + " - bharat pharmatech"}
               priority
             />
           </div>
@@ -155,7 +125,7 @@ const Product = () => {
         <div className="md:block hidden w-[40%] shrink-0 p-5">
           <h3 className="text-2xl font-semibold">Similar Machines</h3>
           <ul className="my-5">
-            {currentCategoryProducts.map((item, i) => {
+            {categoryItems.map((item, i) => {
               return (
                 <li className="border-b py-3" key={i}>
                   <Link
@@ -188,17 +158,17 @@ const Product = () => {
       <section className="md:px-5 py-5 px-3">
         <div className="content">
           <h2 className="text-2xl mt-3 font-semibold uppercase">
-            {data.title}
+            {product.title}
           </h2>
           <div className="para py-5">
-            {data.content.description}
-            {data.content.features && (
+            {product.content.description}
+            {product.content.features && (
               <>
                 <h3 className="text-2xl font-semibold my-5">
                   Salient Features
                 </h3>
                 <ul className="ml-5 mb-5">
-                  {data.content.features.map((item, i) => {
+                  {product.content.features.map((item, i) => {
                     return (
                       <li key={i} className="list-disc">
                         {item}
@@ -211,21 +181,72 @@ const Product = () => {
           </div>
         </div>
         <div className="table w-full">
-          {data.content?.table && (
+          {product.content?.table && (
             <>
               <h3 className="text-2xl font-semibold my-5">
                 Technical Specification
               </h3>
               <figure
                 className="relative overflow-x-auto w-screen"
-                dangerouslySetInnerHTML={{ __html: data.content.table }}
+                dangerouslySetInnerHTML={{ __html: product.content.table }}
               ></figure>
             </>
           )}
         </div>
       </section>
     </>
-  ) : null;
+  );
 };
+
+export async function getStaticPaths() {
+  let paths = [];
+  products.forEach((category) => {
+    category.data.forEach((item) => {
+      paths.push({
+        params: {
+          categoryid: `${item.category}`,
+          product: item.title.split(" ").join("-").toLowerCase(),
+        },
+      });
+    });
+  });
+  return {
+    paths,
+    fallback: true,
+  };
+}
+export async function getStaticProps({ params }) {
+  let product,
+    categoryItems = [],
+    categoryName,
+    productUrl;
+  await products.forEach((category) => {
+    if (+category.id === +params.categoryid) {
+      categoryItems = category.data;
+      category.data.forEach((matchItem) => {
+        const convertedTitle = matchItem.title
+          .split(" ")
+          .join("-")
+          .toLowerCase();
+        if (convertedTitle === params.product) {
+          productUrl = `/p/${matchItem.category}/${convertedTitle}`;
+          categories.forEach((item) => {
+            if (+item.id === +params.categoryid) categoryName = item.name;
+          });
+          product = matchItem;
+        }
+      });
+    }
+  });
+
+  return {
+    props: {
+      product,
+      categoryItems,
+      categoryName,
+      productUrl,
+    },
+  };
+}
 
 export default Product;
