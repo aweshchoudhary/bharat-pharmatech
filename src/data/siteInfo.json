@@ -1,0 +1,50 @@
+{
+  "companyName": "Bharat Pharmatech",
+  "phones": [
+    { "type": "primary", "number": "9687849837" },
+    { "type": "secondary", "number": "9015077510" }
+  ],
+  "emails": [
+    {
+      "type": "primary",
+      "email": "bharatpharmatech@gmail.com"
+    },
+    {
+      "type": "secondary",
+      "email": "pharmamachineryspares@gmail.com"
+    },
+    {
+      "type": "secondary",
+      "email": "email@bharatpharmatech.com"
+    }
+  ],
+  "address": [
+    {
+      "title": "Head Office & Factory",
+      "address": "14 Sarovar Industrial Park, Nr. Circle Hathijan, Ring Road Highway, Vatva, Ahmedabad, Gujarat 382445"
+    }
+  ],
+  "logo": "https://res.cloudinary.com/dzainnrtc/image/upload/v1677398892/min-logo_cj5eu0.png",
+  "socials": [
+    {
+      "title": "Youtube",
+      "url": "",
+      "icon": ""
+    },
+    {
+      "title": "Instagram",
+      "url": "",
+      "icon": ""
+    },
+    {
+      "title": "Twitter",
+      "url": "",
+      "icon": ""
+    },
+    {
+      "title": "Facebook",
+      "url": "",
+      "icon": ""
+    }
+  ]
+}

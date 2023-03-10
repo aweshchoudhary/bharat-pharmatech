@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import products from "@/data/products.json";
 import categories from "@/data/categories.json";
 import Head from "next/head";
-import StructuredData from "@/components/StructuredData";
 import Image from "next/image";
-import GlobalHead from "@/components/GlobalHead";
 
 const Product = () => {
   const router = useRouter();
@@ -150,6 +148,7 @@ const Product = () => {
               height={500}
               className="h-full w-auto object-contain"
               alt={data.title + " - bharat pharmatech"}
+              priority
             />
           </div>
         </div>

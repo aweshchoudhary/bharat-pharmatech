@@ -43,6 +43,7 @@ const Navbar = () => {
                 width={200}
                 height={41}
                 alt="logo transparent - bharat pharmatech"
+                priority
               />
             </Link>
           </div>
@@ -180,6 +181,7 @@ const Navbar = () => {
               width={200}
               height={41}
               alt="logo transparent - bharat pharmatech"
+              priority
             />
           </div>
           <button
