@@ -164,9 +164,9 @@ const Product = ({ product, categoryItems, categoryName, productUrl }) => {
           <div className="para py-5">
             {product.content.description}
             {product.content.features &&
-              product.content.features.map((feature) => {
+              product.content.features.map((feature, i) => {
                 return (
-                  <>
+                  <div key={i}>
                     <h3 className="text-2xl font-semibold my-5 capitalize">
                       {feature.title} Of {product.title}
                     </h3>
@@ -179,7 +179,7 @@ const Product = ({ product, categoryItems, categoryName, productUrl }) => {
                         );
                       })}
                     </ul>
-                  </>
+                  </div>
                 );
               })}
           </div>
