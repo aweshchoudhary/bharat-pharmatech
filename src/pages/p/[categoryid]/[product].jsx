@@ -12,7 +12,6 @@ const Product = ({ product, categoryItems, categoryName, productUrl }) => {
     image: product?.images[0],
     url: "https://www.bharatpharmatech.com" + productUrl,
   };
-
   return product ? (
     <>
       <Head>
@@ -123,7 +122,9 @@ const Product = ({ product, categoryItems, categoryName, productUrl }) => {
           </div>
         </div>
         <div className="md:block hidden w-[40%] shrink-0 p-5">
-          <h3 className="text-2xl font-semibold">Similar Machines</h3>
+          <h3 className="text-2xl font-semibold capitalize">
+            Similar Machines Of {product.title}
+          </h3>
           <ul className="my-5">
             {categoryItems.map((item, i) => {
               return (
@@ -157,34 +158,37 @@ const Product = ({ product, categoryItems, categoryName, productUrl }) => {
       </section>
       <section className="md:px-5 py-5 px-3">
         <div className="content">
-          <h2 className="text-2xl mt-3 font-semibold uppercase">
-            {product.title}
+          <h2 className="text-3xl mt-3 font-semibold uppercase">
+            {product.title} ({categoryName})
           </h2>
           <div className="para py-5">
             {product.content.description}
-            {product.content.features && (
-              <>
-                <h3 className="text-2xl font-semibold my-5">
-                  Salient Features
-                </h3>
-                <ul className="ml-5 mb-5">
-                  {product.content.features.map((item, i) => {
-                    return (
-                      <li key={i} className="list-disc">
-                        {item}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </>
-            )}
+            {product.content.features &&
+              product.content.features.map((feature) => {
+                return (
+                  <>
+                    <h3 className="text-2xl font-semibold my-5 capitalize">
+                      {feature.title} Of {product.title}
+                    </h3>
+                    <ul className="ml-5 mb-5">
+                      {feature.data.map((item, i) => {
+                        return (
+                          <li key={i} className="list-disc">
+                            {item}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                );
+              })}
           </div>
         </div>
         <div className="table w-full">
           {product.content?.table && (
             <>
-              <h3 className="text-2xl font-semibold my-5">
-                Technical Specification
+              <h3 className="text-2xl font-semibold my-5 capitalize">
+                Technical Specifications Of {product.title}
               </h3>
               <figure
                 className="relative overflow-x-auto w-screen"
